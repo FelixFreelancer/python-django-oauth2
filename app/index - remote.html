@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>OIDC RP</title>
+
+</head>
+<body>
+
+    <center>
+        <h1>OAuth2(OIDC)</h1>
+        <button id="login-button">Login</button>
+    </center>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://www.sakimura.org/test/openidconnect.js"></script>
+
+    <script type="text/javascript">
+    $(function() {
+        var clientInfo = {
+            client_id : '978810',
+            redirect_uri : 'http://localhost:3000'
+        };
+
+        OIDC.setClientInfo(clientInfo);
+
+        var providerInfo = OIDC.discover('http://35.194.115.124');
+
+        
+        OIDC.setProviderInfo(providerInfo);
+        OIDC.storeInfo(providerInfo, clientInfo);
+
+        // Restore configuration information.
+        OIDC.restoreInfo();
+
+        // Get Access Token
+        var token = OIDC.getAccessToken();
+        console.log(providerInfo);
+        console.log(token);
+        // Make userinfo request using access_token.
+        if (token !== null) {
+            $.get('http://35.194.115.124/userinfo/?access_token='+token, function( data ) {
+                alert('USERINFO: '+ JSON.stringify(data));
+            });
+        }
+
+        // Make an authorization request if the user click the login button.
+        $('#login-button').click(function (event) {
+            OIDC.login({
+                scope : 'openid profile email',
+                response_type : 'id_token token'
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+*.sqlite3
+*.pem
+static/
+.idea
+1.git
+client/
+tested_hc.py
+env
+simulation/third_party_scrap/

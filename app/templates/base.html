@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>'OpenID Provider Example</title>
+
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+
+</head>
+
+
+    <div style="height: 120px; display: flex; justify-content: center">
+        <img src="{% static 'img/logo.png' %}" alt="My image" style="width: 120px">
+    </div>
+    <!-- <nav class="navbar navbar-fixed-top navbar-light bg-faded">
+        <div class="container">
+            <form class="form-inline pull-xs-right">
+                <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                    {% if user.is_superuser %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'admin:index' %}"><i class="fa fa-external-link" aria-hidden="true"></i>Admin</a></li>
+                    {% endif %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-times" aria-hidden="true"></i> Logout</a></li>
+                    {% else %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'login' %}"><i class="fa fa-sign-in" aria-hidden="true"></i>Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="https://github.com/juanifioren/django-oidc-provider" target="_blank"><i class="fa fa-github-alt"></i>View on Github</a></li>
+                    {% endif %}
+                </ul>
+            </form>
+        </div>
+    </nav> -->
+
+    <div class="container" style="margin-top: 10px;">
+    {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
