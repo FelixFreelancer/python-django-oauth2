@@ -12,13 +12,13 @@ from django.db.models import Q
 
 # import constants form settings.py
 from django.conf import settings
-
-
+from healthcheck.views import saveHealth, get_client_ip
 # Create your views here.
 
 
 @csrf_exempt
 def pointsAdd(request):
+    saveHealth('point_add', datetime.datetime.now(), get_client_ip(request))
     if request.method == 'POST':
         success = True
         missing_field_name = ''
@@ -150,11 +150,11 @@ def pointsAdd(request):
 
 @csrf_exempt
 def pointsAdd_v_12(request):
-    print(request.body)
-    if request.method == 'POST' and 'param' in json.loads(request.body):
-        encrypted_str = json.loads(request.body)['param'].replace(" ", "+")
+    if request.method == 'POST' and 'params' in json.loads(request.body):
+        encrypted_str = json.loads(request.body)['params'].replace(" ", "+")
         decrypted_str = decrypt(encrypted_str)
         decrypted_param = json.loads(decrypted_str)
+
         success = True
         missing_field_name = ''
         third_party_sh_name = ''

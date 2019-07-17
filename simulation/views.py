@@ -134,12 +134,12 @@ def getToken(params):
             , "points_balance": "", "point_accumulated": "", "nights_accumulated": "", "member_name": ""}
 
         # csair's case: remaining_balance, points_to_be_expire_by_monthend field will be used
-        if third_party_sh_name.lower() == 'csair':
+        if third_party_sh_name.lower() == 'csair_tmp':
             result_data = json.loads(scrapCsair(third_userid, third_password))
             store_data['remaining_balance'] = result_data["remaining_balance"]
             store_data['points_to_be_expire_by_monthend'] = result_data["points_to_be_expire_by_monthend"]
 
-        if third_party_sh_name.lower() == 'asiamiles':
+        if third_party_sh_name.lower() == 'asiamiles_tmp':
             needUpdate = checkIfMustUpdate('{"third_party_sh_name": "asiamiles", "third_userid": "' + third_userid + '"}')
             if needUpdate:
                 result_data = json.loads(scrapAsiamiles(third_userid, third_password))
@@ -151,19 +151,19 @@ def getToken(params):
                 # original_data = needUpdate
                 scrap_success = False
 
-        if third_party_sh_name.lower() == 'hilton':
+        if third_party_sh_name.lower() == 'hilton_tmp':
             result_data = json.loads(scrapHilton(third_userid, third_password))
             store_data['stays_balance'] = result_data["stays_balance"]
             store_data['nights_balance'] = result_data["nights_balance"]
             store_data['points_balance'] = result_data["points_balance"]
 
-        if third_party_sh_name.lower() == 'ihg':
+        if third_party_sh_name.lower() == 'ihg_tmp':
             result_data = json.loads(scrapIhg(third_userid, third_password))
             store_data['points_balance'] = result_data["points_balance"]
             store_data['point_accumulated'] = result_data["point_accumulated"]
             store_data['nights_accumulated'] = result_data["nights_accumulated"]
 
-        if third_party_sh_name.lower() == 'moneyback':
+        if third_party_sh_name.lower() == 'moneyback_tmp':
             needUpdate = checkIfMustUpdate('{"third_party_sh_name": "moneyback", "third_userid": "' + third_userid + '"}')
             if needUpdate:
                 result_data = json.loads(scrapMoneyBack(third_userid, third_password))
@@ -178,16 +178,16 @@ def getToken(params):
             updateToken(token, expiration_format_date, success, error_msg, request_mode, userid,
                         third_party_sh_name, third_password, third_userid, third_registered_phone_number)
         else:
-            if scrap_success == True:
-                saveScrapResultstoPoints(store_data)
-                saveToken(token, expiration_format_date, success, error_msg, request_mode, userid, third_party_sh_name,
-                          third_password, third_userid, third_registered_phone_number)
-            else:
-                success = 'false'
-                token = 'null'
-                error_msg = "can't get scraping result"
-                resoponse_status_code = 500
-                expiration_format_date = 'null'
+            # if scrap_success == True:
+            saveScrapResultstoPoints(store_data)
+            saveToken(token, expiration_format_date, success, error_msg, request_mode, userid, third_party_sh_name,
+                      third_password, third_userid, third_registered_phone_number)
+            # else:
+            #     success = 'false'
+            #     token = 'null'
+            #     error_msg = "can't get scraping result"
+            #     resoponse_status_code = 500
+            #     expiration_format_date = 'null'
 
         return_json_data = {
             "success": success,
@@ -307,12 +307,12 @@ def getTokenV12(params):
                       "points_balance": "", "point_accumulated": "", "nights_accumulated": "", "member_name": ""}
 
         # csair's case: remaining_balance, points_to_be_expire_by_monthend field will be used
-        if third_party_sh_name.lower() == 'csair':
+        if third_party_sh_name.lower() == 'csair_tmp':
             result_data = json.loads(scrapCsair(third_userid, third_password))
             store_data['remaining_balance'] = result_data["remaining_balance"]
             store_data['points_to_be_expire_by_monthend'] = result_data["points_to_be_expire_by_monthend"]
 
-        if third_party_sh_name.lower() == 'asiamiles':
+        if third_party_sh_name.lower() == 'asiamiles_tmp':
             needUpdate = checkIfMustUpdate('{"third_party_sh_name": "asiamiles", "third_userid": "' + third_userid + '"}')
             if needUpdate:
                 result_data = json.loads(scrapAsiamiles(third_userid, third_password))
@@ -324,19 +324,19 @@ def getTokenV12(params):
                 # original_data = needUpdate
                 scrap_success = False
 
-        if third_party_sh_name.lower() == 'hilton':
+        if third_party_sh_name.lower() == 'hilton_tmp':
             result_data = json.loads(scrapHilton(third_userid, third_password))
             store_data['stays_balance'] = result_data["stays_balance"]
             store_data['nights_balance'] = result_data["nights_balance"]
             store_data['points_balance'] = result_data["points_balance"]
 
-        if third_party_sh_name.lower() == 'ihg':
+        if third_party_sh_name.lower() == 'ihg_tmp':
             result_data = json.loads(scrapIhg(third_userid, third_password))
             store_data['points_balance'] = result_data["points_balance"]
             store_data['point_accumulated'] = result_data["point_accumulated"]
             store_data['nights_accumulated'] = result_data["nights_accumulated"]
 
-        if third_party_sh_name.lower() == 'moneyback':
+        if third_party_sh_name.lower() == 'moneyback_tmp':
             needUpdate = checkIfMustUpdate('{"third_party_sh_name": "moneyback", "third_userid": "' + third_userid + '"}')
             if needUpdate:
                 result_data = json.loads(scrapMoneyBack(third_userid, third_password))
@@ -344,6 +344,7 @@ def getTokenV12(params):
                 store_data['member_name'] = result_data["membername"]
                 store_data['points_balance'] = result_data["points_balance"]
                 scrap_success = result_data['error']
+
             else:
                 scrap_success = False
 
@@ -351,16 +352,16 @@ def getTokenV12(params):
             updateToken(token, expiration_format_date, success, error_msg, request_mode, userid,
                         third_party_sh_name, third_password, third_userid, third_registered_phone_number)
         else:
-            if scrap_success == True:
-                saveScrapResultstoPoints(store_data)
-                saveToken(token, expiration_format_date, success, error_msg, request_mode, userid, third_party_sh_name,
-                          third_password, third_userid, third_registered_phone_number)
-            else:
-                success = 'false'
-                token = 'null'
-                error_msg = "can't get scraping result"
-                resoponse_status_code = 500
-                expiration_format_date = 'null'
+            # if scrap_success == True:
+            saveScrapResultstoPoints(store_data)
+            saveToken(token, expiration_format_date, success, error_msg, request_mode, userid, third_party_sh_name,
+                      third_password, third_userid, third_registered_phone_number)
+            # else:
+            #     success = 'false'
+            #     token = 'null'
+            #     error_msg = "can't get scraping result"
+            #     resoponse_status_code = 500
+            #     expiration_format_date = 'null'
 
         return_json_data = {
             "success": success,

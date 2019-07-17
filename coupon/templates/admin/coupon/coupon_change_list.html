@@ -1,0 +1,16 @@
+{% extends 'admin/change_list.html' %}
+{% block object-tools %}
+    <form id="csvUpload" method="post" action="csvUpload" enctype="multipart/form-data">
+        {% csrf_token %}
+        <span>Upload Coupon CSV file: </span>
+        <input name="couponCSV" type="file"/>
+        <button type="submit" class="button">Upload Coupon CSV File</button>
+    </form>
+    <br>
+    <script>
+        let csvUploadForm = document.querySelector("#csvUpload");
+        csvUploadForm.querySelector("input[name='couponCSV'").addEventListener('change', function(e){
+        })
+    </script>
+    {{ block.super }}
+{% endblock object-tools %}

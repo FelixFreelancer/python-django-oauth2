@@ -24,7 +24,9 @@ INSTALLED_APPS = [
     'oidc_provider',
     'points',
     'proxy',
-    'simulation'
+    'simulation',
+    'coupon',
+    'healthcheck'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -106,7 +108,7 @@ OIDC_SESSION_MANAGEMENT_ENABLE = True
 
 
 # Custom Constants
-EXPIRATION_SEC = 16000
+EXPIRATION_SEC = 10
 ENCRYPTION_KEY = 'B37AD9F661A50496'
 ENCRYPTION_IV = 'A496F48259F76DEE'
 
