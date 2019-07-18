@@ -26,7 +26,8 @@ INSTALLED_APPS = [
     'proxy',
     'simulation',
     'coupon',
-    'healthcheck'
+    'healthcheck',
+    'couponadmin'
 ]
 
 MIDDLEWARE_CLASSES = [
